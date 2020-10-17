@@ -28,8 +28,7 @@ import { Card, CardBody, CardImg , CardText, CardTitle} from 'reactstrap';
             const dishCmt = dish.comments.map((cmt) => { 
                 return(
                     <div key={cmt.id} >
-                        <p><span>{++item}. </span>{cmt.comment}</p>
-                        <p>Ratings - {cmt.rating}</p>
+                        <p><span>{++item}. </span>{cmt.comment}, Ratings - {cmt.rating}</p>
                         <p>{cmt.author}<span> - {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</span></p> 
                     </div>
                 );}
