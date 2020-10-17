@@ -8,6 +8,7 @@ class DishDetail extends Component {
     renderSelectedDish(dish){
         if(dish != null){
             return (
+                <div >
                 <Card>
                     <CardImg top src={dish.image} alt={dish.name} />
                         <CardBody>
@@ -15,6 +16,7 @@ class DishDetail extends Component {
                             <CardText>{dish.description}</CardText>
                         </CardBody>
                 </Card>
+                </div>
             );
         }else{
             return(
@@ -28,10 +30,10 @@ class DishDetail extends Component {
             let item=0;
             const dishCmt = dish.comments.map((cmt) => { 
                 return(
-                    <div key={cmt.id}>
+                    <div key={cmt.id} >
                         <p><span>{++item}. </span>{cmt.comment}</p>
                         <p>Ratings - {cmt.rating}</p>
-                        <p>{cmt.author}<span> - {cmt.date}</span></p> 
+                        <p>{cmt.author}<span> - {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</span></p> 
                     </div>
                 );}
             );
@@ -41,8 +43,7 @@ class DishDetail extends Component {
                     <div className="row">
                     <Card>
                         <CardBody>
-
-                        {dishCmt}
+                            {dishCmt}
                         </CardBody>
                     </Card>
                     </div>
@@ -57,6 +58,7 @@ class DishDetail extends Component {
 
     render(){
         return(
+            <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-5 mt-1">
                         {this.renderSelectedDish(this.props.dish)}
@@ -65,7 +67,8 @@ class DishDetail extends Component {
                         {this.renderDishComments(this.props.dish)}
                     </div>
                 </div>
-            );
+            </div>
+        );
     }
 }
 
