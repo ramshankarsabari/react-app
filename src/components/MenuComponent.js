@@ -12,7 +12,6 @@ function MenuCard({dish, onClick}){
     );
 }
 
-
     const Menu = ({dishes,onClick}) => { 
         const menu = dishes.map((dish) => { 
             return(
