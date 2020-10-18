@@ -4,6 +4,7 @@ import Home from './HomeComponent';
 import Menu from './MenuComponent'; //presentational component //for the view purpose only
 import Footer from './FooterComponent';
 import Contact from './ContactComponent';
+import DishDetail from './DishDetailComponent';
 import {DISHES} from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
@@ -27,6 +28,14 @@ class Main extends Component{ //Container component // for the purpose for stori
 
 
   render(){
+    
+    const DishViewComponent = ({match}) => {
+      return(
+        <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+            comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+      );
+    }
+
     const HomePage = () => {
       return(
           <Home 
@@ -42,7 +51,8 @@ class Main extends Component{ //Container component // for the purpose for stori
         <Switch>
             <Route path="/home" component={HomePage}/>
             <Route exact path="/menu" component={()=> <Menu dishes={this.state.dishes} />}/>
-            <Route exact path='/contactus' component={Contact} />} />
+            <Route path="/menu/:dishId" component={DishViewComponent} />
+            <Route path='/contactus' component={Contact} />} />
             <Redirect to="/home"/>
         </Switch>
         <Footer />
