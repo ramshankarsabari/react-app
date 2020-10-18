@@ -5,6 +5,7 @@ import Menu from './MenuComponent'; //presentational component //for the view pu
 import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import DishDetail from './DishDetailComponent';
+import About from './AboutComponent';
 import {DISHES} from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
@@ -53,6 +54,7 @@ class Main extends Component{ //Container component // for the purpose for stori
             <Route exact path="/menu" component={()=> <Menu dishes={this.state.dishes} />}/>
             <Route path="/menu/:dishId" component={DishViewComponent} />
             <Route path='/contactus' component={Contact} />} />
+            <Route path='/aboutus' component={()=> <About leaders={this.state.leaders} />} />
             <Redirect to="/home"/>
         </Switch>
         <Footer />
